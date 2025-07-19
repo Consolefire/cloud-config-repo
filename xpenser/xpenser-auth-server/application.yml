@@ -34,5 +34,9 @@ spring:
     url: ${JDBC_URL:jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_SERVER_NAME:}?currentSchema=${DB_SCHEMA:auth_server}}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
-    
+
+  r2dbc: # Reactive database connection for WebFlux
+    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_SERVER_NAME:}?currentSchema=${DB_SCHEMA:auth_server}}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD} 
 
