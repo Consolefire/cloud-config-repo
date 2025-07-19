@@ -1,0 +1,29 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" 
+
+spring:
+  r2dbc: # Reactive database connection for WebFlux
+    url: r2dbc:postgresql://localhost:5432/user_db # Replace with your PostgreSQL URL
+    username: postgres
+    password: password
+  datasource: # For Spring JDBC (used by Spring Security JDBC Token Store if you implement it)
+    url: jdbc:postgresql://localhost:5432/user_db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # This is crucial for your resource server.
+          # Replace with the issuer URI of your Authorization Server (e.g., Keycloak, Auth0, Okta).
+          # The resource server will use this to retrieve the public keys to validate JWTs.
+          issuer-uri: http://localhost:9000/realms/master # Example: your Auth Server's issuer URI
+          # If using an opaque token (introspection), you'd use:
+          # opaquetoken:
+          #   introspection-uri: http://localhost:9000/oauth2/introspect
+          #   client-id: user-service-client
+          #   client-secret: secret

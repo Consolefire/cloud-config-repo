@@ -1,2 +1,37 @@
-test:
-    name: "default"
+
+using:
+  gateway:
+    services:
+      user-service: 
+        name: xpenser-user-service
+        path-prefix: /api/user
+
+# Custom properties for Authorization Server configuration
+auth-server:
+  issuer-uri: http://${eureka.instance.hostname}:${server.port}
+  endpoints:
+    authorization: /oauth2/authorize
+    pushed-authorization-request: /oauth2/par
+    device-authorization: /oauth2/device_authorization
+    device-verification: /oauth2/device_verification
+    token: /oauth2/token
+    token-introspection: /oauth2/introspect
+    token-revocation: /oauth2/revoke
+    jwk-set: /oauth2/jwks
+    oidc-logout: /connect/logout
+    oidc-user-info: /userinfo
+    oidc-client-registration: /connect/register
+
+
+spring:
+  flyway:
+    enabled: true
+    locations: classpath:db/migration # This is the default, but explicitly define if needed
+    baseline-on-migrate: true # Recommended for initial setup or existing databases without Flyway history
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_SERVER_NAME:}}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    
+
