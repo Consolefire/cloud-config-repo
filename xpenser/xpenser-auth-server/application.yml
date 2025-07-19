@@ -25,8 +25,10 @@ auth-server:
 spring:
   flyway:
     enabled: true
-    locations: classpath:db/migration # This is the default, but explicitly define if needed
-    baseline-on-migrate: true # Recommended for initial setup or existing databases without Flyway history
+    locations: classpath:db/migration 
+    baseline-on-migrate: true 
+    defaultSchema: ${DB_SCHEMA:auth_server}
+
   datasource:
     driver-class-name: org.postgresql.Driver
     url: ${JDBC_URL:jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_SERVER_NAME:}?currentSchema=${DB_SCHEMA:auth_server}}
