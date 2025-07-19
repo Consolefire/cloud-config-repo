@@ -3,7 +3,7 @@ management:
     web:
       exposure:
         include: "*"
-        
+
 spring:
   cloud:
     gateway:
@@ -20,4 +20,4 @@ spring:
             - StripPrefix=1 # Removes '/api' from the path before forwarding
             # Example: /api/user/details/user -> /user/details/user on user-service
             # This filter is crucial to map the gateway path to the actual microservice path.
-            - TokenRelay=true # gateway should also forward the user's token (not needed for Auth Server calling it)
+            # - TokenRelay=true # gateway should also forward the user's token (not needed for Auth Server calling it)
