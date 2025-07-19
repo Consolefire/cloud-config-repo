@@ -1,10 +1,9 @@
 
-using:
-  gateway:
-    services:
-      user-service: 
-        name: xpenser-user-service
-        path-prefix: /api/user
+gateway:
+  services:
+    user-service: 
+      name: xpenser-user-service
+      path-prefix: /api/user
 
 # Custom properties for Authorization Server configuration
 auth-server:
