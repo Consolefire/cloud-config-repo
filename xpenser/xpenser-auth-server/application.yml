@@ -27,16 +27,16 @@ spring:
     enabled: true
     locations: classpath:db/migration 
     baseline-on-migrate: true 
-    defaultSchema: ${DB_SCHEMA:auth_server}
+    defaultSchema: ${DB_SCHEMA:xpenser_auth_server}
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_SERVER_NAME:}?currentSchema=${DB_SCHEMA:xpenser_auth_server}}
+    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:15432}/${DB_SERVER_NAME:neverland}?currentSchema=${DB_SCHEMA:xpenser_auth_server}}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
 
   r2dbc: # Reactive database connection for WebFlux
-    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_SERVER_NAME:}?currentSchema=${DB_SCHEMA:xpenser_auth_server}}
+    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:15432}/${DB_SERVER_NAME:neverland}?currentSchema=${DB_SCHEMA:xpenser_auth_server}}
     username: ${DB_USER}
     password: ${DB_PASSWORD} 
 
