@@ -5,15 +5,17 @@ management:
         include: "*" 
 
 spring:
-  r2dbc: # Reactive database connection for WebFlux
-    url: r2dbc:postgresql://localhost:5432/user_db # Replace with your PostgreSQL URL
-    username: postgres
-    password: password
-  datasource: # For Spring JDBC (used by Spring Security JDBC Token Store if you implement it)
-    url: jdbc:postgresql://localhost:5432/user_db
-    username: postgres
-    password: password
+  datasource:
     driver-class-name: org.postgresql.Driver
+    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_SERVER_NAME:neverland}?currentSchema=${DB_SCHEMA:xpenser_user_service}}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+
+  r2dbc: # Reactive database connection for WebFlux
+    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_SERVER_NAME:neverland}?currentSchema=${DB_SCHEMA:xpenser_user_service}}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+
   security:
     oauth2:
       resourceserver:
