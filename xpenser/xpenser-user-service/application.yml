@@ -12,9 +12,9 @@ spring:
     password: ${DB_PASSWORD}
 
   r2dbc: # Reactive database connection for WebFlux
-    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_SERVER_NAME:neverland}?currentSchema=${DB_SCHEMA:xpenser_user_service}}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:15432}/${DB_SERVER_NAME:neverland}?currentSchema=${DB_SCHEMA:xpenser_user_service}}
+    username: ${DB_USER:peterpan}
+    password: ${DB_PASSWORD:P3terP@n}
     # No driver-class-name needed for R2DBC
     pool: # Connection pool for R2DBC (e.g., r2dbc-pool)
       max-size: 10
@@ -27,7 +27,7 @@ spring:
     enabled: true
     locations: classpath:db/migration
     baseline-on-migrate: true
-    
+
   security:
     oauth2:
       resourceserver:
