@@ -10,9 +10,9 @@ commons:
         username: ${DB_USER:peterpan}
         password: ${DB_PASSWORD:P3terP@n}
         schema: ${DB_SCHEMA:xpenser_user_service}
-        options: 
+        driver-options: 
           k: validate
-          
+
         pool: # Connection pool for R2DBC (e.g., r2dbc-pool)
           name: PG_POOL
           max-size: 10
