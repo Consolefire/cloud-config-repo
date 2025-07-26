@@ -10,8 +10,8 @@ commons:
         username: ${DB_USER:peterpan}
         password: ${DB_PASSWORD:P3terP@n}
         current-schema: ${DB_SCHEMA:xpenser_user_service}
-        driver-options: 
-          k: validate
+        #driver-options: 
+        #  k: validate
 
         pool: # Connection pool for R2DBC (e.g., r2dbc-pool)
           name: PG_POOL
