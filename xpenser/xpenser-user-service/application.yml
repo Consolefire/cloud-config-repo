@@ -1,3 +1,27 @@
+
+commons:
+  infra:
+    database:
+      postgresql:
+        driver-class-name: org.postgresql.Driver
+        host: ${DB_HOST:localhost}
+        port: ${DB_PORT:5432}
+        database-name: ${DB_SERVER_NAME:neverland}
+        username: ${DB_USER:peterpan}
+        password: ${DB_PASSWORD:P3terP@n}
+        schema: ${DB_SCHEMA:xpenser_user_service}
+        options: 
+          k: validate
+          
+        pool: # Connection pool for R2DBC (e.g., r2dbc-pool)
+          name: PG_POOL
+          max-size: 10
+          initial-size: 5
+          max-idle-time: 30m
+          validation-query: SELECT 1
+          # Other pool properties as needed
+
+
 management:
   endpoints:
     web:
@@ -7,12 +31,12 @@ management:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_SERVER_NAME:neverland}?currentSchema=${DB_SCHEMA:xpenser_user_service}}
+    url: ${JDBC_URL:jdbc:postgresql://${commons.infra.database.postgresql.host}:${commons.infra.database.postgresql.port}/${commons.infra.database.postgresql.database-name}?currentSchema=${commons.infra.database.postgresql.schema}}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
 
   r2dbc: # Reactive database connection for WebFlux
-    url: ${R2DBC_URL:r2dbc:postgresql://${DB_HOST:localhost}:${DB_PORT:15432}/${DB_SERVER_NAME:neverland}?currentSchema=${DB_SCHEMA:xpenser_user_service}}
+    url: ${R2DBC_URL:r2dbc:postgresql://${commons.infra.database.postgresql.host}:${commons.infra.database.postgresql.port}/${commons.infra.database.postgresql.database-name}?currentSchema=${commons.infra.database.postgresql.schema}}
     username: ${DB_USER:peterpan}
     password: ${DB_PASSWORD:P3terP@n}
     # No driver-class-name needed for R2DBC
