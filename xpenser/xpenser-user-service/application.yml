@@ -68,6 +68,9 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
     url: ${spring.datasource.url}
+    username: ${commons.infra.database.postgresql.username}
+    password: ${commons.infra.database.postgresql.password}
+    defaultSchema: ${commons.infra.database.postgresql.current-schema}
 
   security:
     oauth2:
