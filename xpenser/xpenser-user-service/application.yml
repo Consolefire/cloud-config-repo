@@ -9,7 +9,7 @@ commons:
         database-name: ${DB_SERVER_NAME:neverland}
         username: ${DB_USER:peterpan}
         password: ${DB_PASSWORD:P3terP@n}
-        schema: ${DB_SCHEMA:xpenser_user_service}
+        current-schema: ${DB_SCHEMA:xpenser_user_service}
         driver-options: 
           k: validate
 
@@ -31,12 +31,12 @@ management:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${JDBC_URL:jdbc:postgresql://${commons.infra.database.postgresql.host}:${commons.infra.database.postgresql.port}/${commons.infra.database.postgresql.database-name}?currentSchema=${commons.infra.database.postgresql.schema}}
+    url: ${JDBC_URL:jdbc:postgresql://${commons.infra.database.postgresql.host}:${commons.infra.database.postgresql.port}/${commons.infra.database.postgresql.database-name}?currentSchema=${commons.infra.database.postgresql.current-schema}}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
 
   r2dbc: # Reactive database connection for WebFlux
-    url: ${R2DBC_URL:r2dbc:postgresql://${commons.infra.database.postgresql.host}:${commons.infra.database.postgresql.port}/${commons.infra.database.postgresql.database-name}?currentSchema=${commons.infra.database.postgresql.schema}}
+    url: ${R2DBC_URL:r2dbc:postgresql://${commons.infra.database.postgresql.host}:${commons.infra.database.postgresql.port}/${commons.infra.database.postgresql.database-name}?currentSchema=${commons.infra.database.postgresql.current-schema}}
     username: ${DB_USER:peterpan}
     password: ${DB_PASSWORD:P3terP@n}
     # No driver-class-name needed for R2DBC
