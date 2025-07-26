@@ -22,6 +22,7 @@ commons:
           # Other pool properties as needed
 
 
+
 management:
   endpoints:
     web:
@@ -30,18 +31,6 @@ management:
 
 spring:
   
-  r2dbc: # Reactive database connection for WebFlux
-    # r2dbc:driver[:protocol]://[user:password@]host[:port][/path][?option=value]}
-    url: ${R2DBC_URL:r2dbc:postgresql://${commons.infra.database.postgresql.username}:${commons.infra.database.postgresql.password}@${commons.infra.database.postgresql.host}:${commons.infra.database.postgresql.port}/${commons.infra.database.postgresql.database-name}?currentSchema=${commons.infra.database.postgresql.current-schema}}
-    username: ${commons.infra.database.postgresql.username}
-    password: ${commons.infra.database.postgresql.password}
-    # No driver-class-name needed for R2DBC
-    pool: # Connection pool for R2DBC (e.g., r2dbc-pool)
-      max-size: 10
-      initial-size: 5
-      max-idle-time: 30m
-      validation-query: SELECT 1
-      # Other pool properties as needed
 
   flyway: # Flyway still manages schema, even for R2DBC
     enabled: true
