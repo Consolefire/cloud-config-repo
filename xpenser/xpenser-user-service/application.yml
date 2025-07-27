@@ -64,7 +64,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect # Your specific database dialect
 
   flyway: # Flyway still manages schema, even for R2DBC
-    enabled: true
+    enabled: false
     locations: classpath:db/migration
     baseline-on-migrate: true
     url: ${spring.datasource.url}
