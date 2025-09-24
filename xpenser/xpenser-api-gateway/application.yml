@@ -7,6 +7,10 @@ management:
 spring:
   cloud:
     gateway:
+      enabled: true
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
       discovery:
         locator:
           enabled: true # Enable discovery service integration
@@ -25,7 +29,7 @@ spring:
         - id: expense-service-route
           uri: lb://xpenser-expense-service # 'lb://' means load-balanced, followed by Eureka service ID
           predicates:
-            - Path=/api/expense/** # Requests starting with /api/user will be routed
+            - Path=/api/expense/** # Requests starting with /api/expense will be routed
           filters:
             - StripPrefix=1 # Removes '/api' from the path before forwarding
             # Example: /api/user/details/user -> /user/details/user on user-service
@@ -35,9 +39,9 @@ spring:
         - id: document-service-route
           uri: lb://xpenser-document-service # 'lb://' means load-balanced, followed by Eureka service ID
           predicates:
-            - Path=/api/document/** # Requests starting with /api/user will be routed
+            - Path=/api/document/** # Requests starting with /api/document will be routed
           filters:
-            - StripPrefix=1 # Removes '/api' from the path before forwarding
+            - StripPrefix=2 # Removes '/api' from the path before forwarding
             # Example: /api/user/details/user -> /user/details/user on user-service
             # This filter is crucial to map the gateway path to the actual microservice path.
             # - TokenRelay=true # gateway should also forward the user's token (not needed for Auth Server calling it)
