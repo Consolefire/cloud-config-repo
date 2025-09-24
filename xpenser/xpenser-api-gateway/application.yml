@@ -21,29 +21,23 @@ spring:
           predicates:
             - Path=/api/user/** # Requests starting with /api/user will be routed
           filters:
-            - StripPrefix=1 # Removes '/api' from the path before forwarding
+            - StripPrefix=2 # Removes '/api/user' from the path before forwarding
             # Example: /api/user/details/user -> /user/details/user on user-service
             # This filter is crucial to map the gateway path to the actual microservice path.
             # - TokenRelay=true # gateway should also forward the user's token (not needed for Auth Server calling it)
         
         - id: expense-service-route
-          uri: lb://xpenser-expense-service # 'lb://' means load-balanced, followed by Eureka service ID
+          uri: lb://xpenser-expense-service
           predicates:
-            - Path=/api/expense/** # Requests starting with /api/expense will be routed
+            - Path=/api/expense/**
           filters:
-            - StripPrefix=1 # Removes '/api' from the path before forwarding
-            # Example: /api/user/details/user -> /user/details/user on user-service
-            # This filter is crucial to map the gateway path to the actual microservice path.
-            # - TokenRelay=true # gateway should also forward the user's token (not needed for Auth Server calling it)
-
+            - StripPrefix=2
+            
         - id: document-service-route
-          uri: lb://xpenser-document-service # 'lb://' means load-balanced, followed by Eureka service ID
+          uri: lb://xpenser-document-service 
           predicates:
-            - Path=/api/document/** # Requests starting with /api/document will be routed
+            - Path=/api/document/** 
           filters:
-            - StripPrefix=2 # Removes '/api' from the path before forwarding
-            # Example: /api/user/details/user -> /user/details/user on user-service
-            # This filter is crucial to map the gateway path to the actual microservice path.
-            # - TokenRelay=true # gateway should also forward the user's token (not needed for Auth Server calling it)
-
+            - StripPrefix=2 
+            
 
